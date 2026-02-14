@@ -89,17 +89,32 @@ button{
 <script>
 var yesBtn = document.getElementById("yes");
 var noBtn = document.getElementById("no");
-var card = document.getElementById("card");
 
-// Botón NO se mueve
-noBtn.onmouseover = function(){
-  var x = Math.random()*200 - 100;
-  var y = Math.random()*200 - 100;
-  noBtn.style.transform = "translate(" + x + "px," + y + "px)";
-};
+var intentos = 0;
 
-// Botón SÍ cambia toda la pantalla
-yesBtn.onclick = function(){
+function moverNo() {
+  intentos++;
+
+  if (intentos < 5) {
+    var x = Math.random() * 250 - 125;
+    var y = Math.random() * 250 - 125;
+    noBtn.style.transform = "translate(" + x + "px," + y + "px)";
+  } else {
+    noBtn.style.display = "none";
+  }
+}
+
+// PC
+noBtn.addEventListener("mouseover", moverNo);
+
+// Celular
+noBtn.addEventListener("touchstart", function(e){
+  e.preventDefault();
+  moverNo();
+});
+
+// Botón SÍ
+yesBtn.addEventListener("click", function(){
   document.body.innerHTML = `
   <div style="
     height:100vh;
@@ -109,7 +124,6 @@ yesBtn.onclick = function(){
     background:linear-gradient(135deg,#ff9acb,#ff4fa3);
     color:white;
     text-align:center;
-    font-family:Segoe UI;
   ">
     <div>
       <h1>💖 Sabía que dirías que sí, Kei 💖</h1>
@@ -117,7 +131,7 @@ yesBtn.onclick = function(){
     </div>
   </div>
   `;
-};
+});
 </script>
 
 </body>
