@@ -1,10 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>San Valentín 💖</title>
+  <meta charset="UTF-8">
+  <title>Para Kei 💖</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd1e8, #ff9acb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      padding: 30px;
+      width: 340px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 15px 0;
+      font-size: 16px;
+    }
+
+    .question {
+      background: #fff;
+      padding: 15px;
+      border-radius: 15px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #yes {
+      background: #000;
+      color: #fff;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
+    }
+
+    #no {
+      background: #f2f2f2;
+      position: relative;
+    }
+
+    .hearts {
+      position: fixed;
+      font-size: 20px;
+      animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
-<body style="text-align:center; font-family:Arial;">
-  <h1>Feliz San Valentín 💘</h1>
-  <p>Esta página es para alguien muy especial.</p>
+<body>
+
+  <div class="card">
+    <h1>Hey Kei 💌</h1>
+    <p>Hunter tiene una pregunta…</p>
+
+    <div class="question">
+      ¿Quieres ser mi San Valentín y mi princesita, Kei?
+    </div>
+
+    <div class="buttons">
+      <button id="yes">Sí 💖</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = translate(${x}px, ${y}px);
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <h1 style="color:white; text-align:center; margin-top:40vh;">
+          💖 Sabía que dirías que sí, Kei 💖<br><br>
+          Con amor, Hunter 🥹💘
+        </h1>
+      `;
+    });
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "hearts";
+      heart.innerText = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000);
+    }, 300);
+  </script>
+
 </body>
 </html>
