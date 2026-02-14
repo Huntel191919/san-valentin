@@ -6,11 +6,6 @@
 <title>Para Kei 💖</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family:Segoe UI, sans-serif;
-}
-
 body{
   margin:0;
   height:100vh;
@@ -18,6 +13,7 @@ body{
   justify-content:center;
   align-items:center;
   background:linear-gradient(135deg,#ffd1e8,#ff9acb);
+  font-family:Segoe UI, sans-serif;
   overflow:hidden;
 }
 
@@ -26,23 +22,15 @@ body{
   padding:30px;
   border-radius:25px;
   text-align:center;
-  width:340px;
+  width:320px;
   box-shadow:0 20px 40px rgba(0,0,0,0.15);
-}
-
-h1{
-  margin:0;
-}
-
-.question{
-  margin:20px 0;
-  font-weight:bold;
+  position:relative;
 }
 
 .buttons{
-  display:flex;
-  justify-content:space-around;
-  gap:10px;
+  margin-top:20px;
+  position:relative;
+  height:60px;
 }
 
 button{
@@ -51,34 +39,28 @@ button{
   border-radius:20px;
   font-size:16px;
   cursor:pointer;
-  transition:0.3s;
+  position:absolute;
 }
 
 #yes{
   background:black;
   color:white;
-}
-
-#yes:hover{
-  transform:scale(1.1);
+  left:20px;
 }
 
 #no{
   background:#eee;
-  position:relative;
+  right:20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <h1>Hey Kei 💌</h1>
+<div class="card">
+  <h2>Hey Kei 💌</h2>
   <p>Hunter tiene una pregunta…</p>
-
-  <div class="question">
-    ¿Quieres ser mi San Valentín y mi princesita, Kei?
-  </div>
+  <p><b>¿Quieres ser mi San Valentín y mi princesita, Kei?</b></p>
 
   <div class="buttons">
     <button id="yes">Sí 💖</button>
@@ -89,31 +71,28 @@ button{
 <script>
 var yesBtn = document.getElementById("yes");
 var noBtn = document.getElementById("no");
-
 var intentos = 0;
 
-function moverNo() {
+function moverNo(){
   intentos++;
 
-  if (intentos < 5) {
-    var x = Math.random() * 250 - 125;
-    var y = Math.random() * 250 - 125;
-    noBtn.style.transform = "translate(" + x + "px," + y + "px)";
+  if(intentos < 5){
+    var randomX = Math.random() * 200;
+    var randomY = Math.random() * 30;
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
   } else {
     noBtn.style.display = "none";
   }
 }
 
-// PC
-noBtn.addEventListener("mouseover", moverNo);
-
-// Celular
 noBtn.addEventListener("touchstart", function(e){
   e.preventDefault();
   moverNo();
 });
 
-// Botón SÍ
+noBtn.addEventListener("mouseover", moverNo);
+
 yesBtn.addEventListener("click", function(){
   document.body.innerHTML = `
   <div style="
@@ -124,6 +103,7 @@ yesBtn.addEventListener("click", function(){
     background:linear-gradient(135deg,#ff9acb,#ff4fa3);
     color:white;
     text-align:center;
+    font-family:Segoe UI;
   ">
     <div>
       <h1>💖 Sabía que dirías que sí, Kei 💖</h1>
